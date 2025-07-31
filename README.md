@@ -208,6 +208,14 @@ Once configured, you can interact with your Bubble app through your MCP client:
 - **Delete Records**: "Delete the product with ID xxx"
 - **Execute Workflows**: "Run the 'send_welcome_email' workflow for user xxx"
 
+## 🎥 Video Example
+
+Watch a video demonstration of how to use the Bubble MCP integration with Claude Desktop:
+
+[![Watch the demo video](https://img.shields.io/badge/Watch-Demo%20Video-blue?style=for-the-badge&logo=youtube)](https://assets.nocoderoi.com/mcp_bubble.mp4)
+
+> **[Click here to watch the demo video](https://assets.nocoderoi.com/mcp_bubble.mp4)** - See how to connect Claude Desktop to your Bubble app and perform data operations.
+
 ### Example Interactions
 
 ```
