@@ -201,10 +201,80 @@ Claude: I'll create a new product for you...
 
 ## 🔒 Security Considerations
 
+### Understanding MCP Modes
+
+The Bubble MCP server supports two operational modes that control what actions Claude can perform:
+
+#### 🔍 Read-Only Mode (Recommended)
+- **What it does**: Only allows viewing and fetching data from your Bubble app
+- **Available operations**: 
+  - List data types
+  - Fetch records
+  - View app structure
+- **Blocked operations**: Create, Update, Delete, and Workflow execution
+- **When to use**: 
+  - When exploring your data
+  - For reporting and analysis
+  - When learning about your app structure
+  - **As your default setting for safety**
+
+#### ✏️ Read-Write Mode
+- **What it does**: Allows full CRUD operations and workflow execution
+- **Available operations**: All read operations PLUS:
+  - Create new records
+  - Update existing records
+  - Delete records
+  - Execute API workflows
+- **When to use**: 
+  - Only when you specifically need to modify data
+  - For automation tasks
+  - During active development
+
+### 🛡️ Best Practices for Safety
+
+1. **Start with Read-Only**: Always begin with `MCP_MODE=read-only` in your configuration
+   ```json
+   "env": {
+     "MCP_MODE": "read-only"  // Safe default
+   }
+   ```
+
+2. **Temporary Write Access**: Only switch to `read-write` when you need to perform modifications
+   ```json
+   "env": {
+     "MCP_MODE": "read-write"  // Use with caution
+   }
+   ```
+
+3. **Separate Configurations**: Consider having two MCP server configurations:
+   - `bubble-readonly`: Your default for everyday use
+   - `bubble-write`: Only for when modifications are needed
+
+4. **API Token Permissions**: 
+   - Create separate API tokens with different permission levels
+   - Use restricted tokens for read-only access
+   - Keep write-enabled tokens extra secure
+
+### ⚠️ Mode Differences at a Glance
+
+| Feature | Read-Only | Read-Write |
+|---------|-----------|------------|
+| List data types | ✅ | ✅ |
+| Fetch records | ✅ | ✅ |
+| Create records | ❌ | ✅ |
+| Update records | ❌ | ✅ |
+| Delete records | ❌ | ✅ |
+| Execute workflows | ❌ | ✅ |
+| Risk of data loss | None | Possible |
+| Recommended for beginners | ✅ | ❌ |
+
+### 🔐 Additional Security Tips
+
 - **API Tokens**: Never commit your API tokens to version control
-- **Read-only Mode**: Use read-only mode when you only need to view data
-- **Privacy Rules**: The server respects Bubble's privacy rules - ensure your API token has appropriate permissions
 - **Environment Variables**: Always use environment variables or secure configuration for sensitive data
+- **Privacy Rules**: The server respects Bubble's privacy rules - ensure your API token has appropriate permissions
+- **Audit Trail**: In read-write mode, keep track of changes made through the MCP server
+- **Backup**: Always backup your Bubble data before using read-write mode for bulk operations
 
 ## 🤝 Contributing
 
