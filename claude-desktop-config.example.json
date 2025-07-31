@@ -3,9 +3,7 @@
     "bubble": {
       "command": "node",
       "args": [
-        "/path/to/bubble-mcp/dist/mcp-server.js",
-        "--mode",
-        "read-write"
+        "/path/to/bubble-mcp/dist/mcp-server.js"
       ],
       "env": {
         "BUBBLE_BASE_URL": "https://your-app.bubbleapps.io",

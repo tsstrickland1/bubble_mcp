@@ -117,9 +117,7 @@ A Model Context Protocol (MCP) server that enables Claude Desktop to interact wi
        "bubble": {
          "command": "node",
          "args": [
-           "/Users/yourname/projects/bubble_mcp/dist/mcp-server.js",
-           "--mode",
-           "read-write"
+           "/Users/yourname/projects/bubble_mcp/dist/mcp-server.js"
          ],
          "env": {
            "BUBBLE_BASE_URL": "https://your-app.bubbleapps.io",
@@ -155,9 +153,7 @@ A Model Context Protocol (MCP) server that enables Claude Desktop to interact wi
        "bubble": {
          "command": "node",
          "args": [
-           "C:\\Users\\yourname\\projects\\bubble_mcp\\dist\\mcp-server.js",
-           "--mode",
-           "read-write"
+           "C:\\Users\\yourname\\projects\\bubble_mcp\\dist\\mcp-server.js"
          ],
          "env": {
            "BUBBLE_BASE_URL": "https://your-app.bubbleapps.io",
