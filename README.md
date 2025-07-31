@@ -166,18 +166,6 @@ DEBUG=true npm run mcp
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
-
-- The Bubble.io team for their excellent platform
-- Anthropic for Claude and the MCP protocol
-- All contributors who help improve this project
-
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/nocoderoi/bubble_mcp/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/nocoderoi/bubble_mcp/discussions)
-- **Documentation**: [Wiki](https://github.com/nocoderoi/bubble_mcp/wiki)
-
 ---
 
 Made with ❤️ by the community
