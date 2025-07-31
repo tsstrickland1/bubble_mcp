@@ -212,7 +212,7 @@ Once configured, you can interact with your Bubble app through your MCP client:
 
 Watch a video demonstration of how to use the Bubble MCP integration with Claude Desktop:
 
-https://github.com/nocoderoi/bubble_mcp/blob/main/docs/mcp_bubble.mp4
+[![Bubble MCP Demo](https://img.youtube.com/vi/Zplpp1WeZpE/maxresdefault.jpg)](https://youtu.be/Zplpp1WeZpE)
 
 ### Example Interactions
 
