@@ -325,6 +325,20 @@ We welcome contributions from the community! Here's how you can help:
 3. **"Privacy rule violation"**: Your API token may not have access to certain data types
 4. **MCP client not connecting**: Ensure the path in config is absolute and the server is built
 
+### Starting the Server
+
+To start the MCP server, use one of the following commands depending on your environment:
+
+**For Direct Node Execution:**
+```bash
+node dist/mcp-server.js
+```
+
+**For Development Mode (with hot-reloading):**
+```bash
+npm run mcp
+```
+
 ### Debug Mode
 
 Set `DEBUG=true` in your environment to enable verbose logging:
