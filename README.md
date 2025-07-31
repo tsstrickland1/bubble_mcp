@@ -1,6 +1,6 @@
 # Bubble MCP
 
-A Model Context Protocol (MCP) server that enables Claude Desktop to interact with Bubble.io applications. This server provides a standardized interface for reading and manipulating data in any Bubble application.
+A Model Context Protocol (MCP) server that enables AI assistants and other MCP-compatible clients to interact with Bubble.io applications. This server provides a standardized interface for reading and manipulating data in any Bubble application.
 
 ## 🚀 Features
 
@@ -12,12 +12,23 @@ A Model Context Protocol (MCP) server that enables Claude Desktop to interact wi
 - **Read-only/Read-write Modes**: Configurable access levels for safety
 - **Type-safe**: Provides detailed type information for all operations
 
+## 🔌 MCP Compatibility
+
+This server implements the Model Context Protocol (MCP), an open protocol that enables secure, standardized communication between AI assistants and external systems. While MCP was developed by Anthropic, it's designed to be vendor-agnostic.
+
+### Currently Compatible Clients:
+- **Claude Desktop** - Full support
+- Other MCP clients - Should work with any client that implements the MCP specification
+
+### Future Compatibility:
+As MCP is an open protocol, we expect more AI assistants and tools to add support over time. This server will work with any client that properly implements the MCP standard.
+
 ## 📋 Prerequisites
 
 - Node.js (v16 or higher)
 - npm or yarn
 - A Bubble.io application with API access enabled
-- Claude Desktop (for MCP integration)
+- An MCP-compatible client (e.g., Claude Desktop)
 
 ## 🛠️ Installation
 
@@ -95,9 +106,13 @@ A Model Context Protocol (MCP) server that enables Claude Desktop to interact wi
 4. Generate an API token
 5. Copy the token to your `.env` file
 
-### Setting Up Claude Desktop
+### Setting Up Your MCP Client
 
-#### For Mac/Linux:
+The exact configuration steps depend on your MCP client. Below are examples for Claude Desktop:
+
+#### Claude Desktop Configuration
+
+##### For Mac/Linux:
 
 1. Copy the example configuration:
    ```bash
@@ -134,7 +149,7 @@ A Model Context Protocol (MCP) server that enables Claude Desktop to interact wi
    cp claude-desktop-config.json ~/Library/Application\ Support/Claude/claude_desktop_config.json
    ```
 
-#### For Windows:
+##### For Windows:
 
 1. Copy the example configuration:
    ```cmd
@@ -173,9 +188,16 @@ A Model Context Protocol (MCP) server that enables Claude Desktop to interact wi
 
 5. Restart Claude Desktop
 
+#### Other MCP Clients
+
+For other MCP-compatible clients, refer to their documentation for configuration instructions. The key configuration elements you'll need are:
+- **Command**: `node`
+- **Arguments**: Path to `dist/mcp-server.js`
+- **Environment variables**: `BUBBLE_BASE_URL`, `BUBBLE_API_TOKEN`, and `MCP_MODE`
+
 ## 🎯 Usage
 
-Once configured, you can interact with your Bubble app through Claude Desktop:
+Once configured, you can interact with your Bubble app through your MCP client:
 
 ### Available Commands
 
@@ -190,20 +212,20 @@ Once configured, you can interact with your Bubble app through Claude Desktop:
 
 ```
 You: "List all the data types in my Bubble app"
-Claude: I'll help you discover the data types in your Bubble app...
+Assistant: I'll help you discover the data types in your Bubble app...
 
 You: "Show me the first 5 customers"
-Claude: I'll fetch the first 5 customers from your database...
+Assistant: I'll fetch the first 5 customers from your database...
 
 You: "Create a new product called 'Widget' with price 29.99"
-Claude: I'll create a new product for you...
+Assistant: I'll create a new product for you...
 ```
 
 ## 🔒 Security Considerations
 
 ### Understanding MCP Modes
 
-The Bubble MCP server supports two operational modes that control what actions Claude can perform:
+The Bubble MCP server supports two operational modes that control what actions the MCP client can perform:
 
 #### 🔍 Read-Only Mode (Recommended)
 - **What it does**: Only allows viewing and fetching data from your Bubble app
@@ -301,7 +323,7 @@ We welcome contributions from the community! Here's how you can help:
 1. **"Cannot find data type"**: Ensure your Bubble app has the Data API enabled
 2. **"Authentication failed"**: Check your API token is correct and has appropriate permissions
 3. **"Privacy rule violation"**: Your API token may not have access to certain data types
-4. **Claude Desktop not connecting**: Ensure the path in config is absolute and the server is built
+4. **MCP client not connecting**: Ensure the path in config is absolute and the server is built
 
 ### Debug Mode
 
