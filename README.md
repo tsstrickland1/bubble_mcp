@@ -23,6 +23,8 @@ A Model Context Protocol (MCP) server that enables Claude Desktop to interact wi
 
 ### Local Development Setup
 
+#### For Mac/Linux:
+
 1. Clone the repository:
    ```bash
    git clone https://github.com/nocoderoi/bubble_mcp.git
@@ -40,6 +42,38 @@ A Model Context Protocol (MCP) server that enables Claude Desktop to interact wi
    ```
 
 4. Edit `.env` with your Bubble app details:
+   ```bash
+   nano .env  # or use your preferred text editor
+   ```
+
+5. Build the project:
+   ```bash
+   npm run build
+   ```
+
+#### For Windows:
+
+1. Clone the repository:
+   ```cmd
+   git clone https://github.com/nocoderoi/bubble_mcp.git
+   cd bubble_mcp
+   ```
+
+2. Install dependencies:
+   ```cmd
+   npm install
+   ```
+
+3. Copy the example environment file:
+   ```cmd
+   copy .env.example .env
+   ```
+
+4. Edit `.env` with your Bubble app details:
+   ```cmd
+   notepad .env
+   ```
+   Or use any text editor to add:
    ```env
    BUBBLE_BASE_URL=https://your-app.bubbleapps.io
    BUBBLE_API_TOKEN=your-bubble-api-token-here
@@ -47,7 +81,7 @@ A Model Context Protocol (MCP) server that enables Claude Desktop to interact wi
    ```
 
 5. Build the project:
-   ```bash
+   ```cmd
    npm run build
    ```
 
@@ -63,19 +97,27 @@ A Model Context Protocol (MCP) server that enables Claude Desktop to interact wi
 
 ### Setting Up Claude Desktop
 
+#### For Mac/Linux:
+
 1. Copy the example configuration:
    ```bash
    cp claude-desktop-config.example.json claude-desktop-config.json
    ```
 
-2. Edit `claude-desktop-config.json`:
+2. Edit `claude-desktop-config.json` with your absolute path:
+   ```bash
+   pwd  # Get your current directory path
+   nano claude-desktop-config.json
+   ```
+
+3. Update the configuration (example for Mac/Linux):
    ```json
    {
      "mcpServers": {
        "bubble": {
          "command": "node",
          "args": [
-           "/absolute/path/to/bubble_mcp/dist/mcp-server.js",
+           "/Users/yourname/projects/bubble_mcp/dist/mcp-server.js",
            "--mode",
            "read-write"
          ],
@@ -89,11 +131,51 @@ A Model Context Protocol (MCP) server that enables Claude Desktop to interact wi
    }
    ```
 
-3. Copy this configuration to Claude Desktop's config location:
-   - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
-   - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+4. Copy to Claude Desktop config location:
+   ```bash
+   cp claude-desktop-config.json ~/Library/Application\ Support/Claude/claude_desktop_config.json
+   ```
 
-4. Restart Claude Desktop
+#### For Windows:
+
+1. Copy the example configuration:
+   ```cmd
+   copy claude-desktop-config.example.json claude-desktop-config.json
+   ```
+
+2. Get your current directory path:
+   ```cmd
+   cd
+   ```
+
+3. Edit `claude-desktop-config.json` with the full Windows path:
+   ```json
+   {
+     "mcpServers": {
+       "bubble": {
+         "command": "node",
+         "args": [
+           "C:\\Users\\yourname\\projects\\bubble_mcp\\dist\\mcp-server.js",
+           "--mode",
+           "read-write"
+         ],
+         "env": {
+           "BUBBLE_BASE_URL": "https://your-app.bubbleapps.io",
+           "BUBBLE_API_TOKEN": "your-bubble-api-token-here",
+           "MCP_MODE": "read-write"
+         }
+       }
+     }
+   }
+   ```
+   **Note**: Use double backslashes (`\\`) in the path!
+
+4. Copy to Claude Desktop config location:
+   ```cmd
+   copy claude-desktop-config.json %APPDATA%\Claude\claude_desktop_config.json
+   ```
+
+5. Restart Claude Desktop
 
 ## 🎯 Usage
 
@@ -158,8 +240,20 @@ We welcome contributions from the community! Here's how you can help:
 ### Debug Mode
 
 Set `DEBUG=true` in your environment to enable verbose logging:
+
+**Mac/Linux:**
 ```bash
 DEBUG=true npm run mcp
+```
+
+**Windows (Command Prompt):**
+```cmd
+set DEBUG=true && npm run mcp
+```
+
+**Windows (PowerShell):**
+```powershell
+$env:DEBUG="true"; npm run mcp
 ```
 
 ## 📝 License
