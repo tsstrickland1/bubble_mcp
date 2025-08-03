@@ -10,26 +10,35 @@ export class BubbleService {
     this.client = client;
   }
 
+  // Modify getSchema to use the root API path
   async getSchema(): Promise<BubbleSchema> {
     if (!this.schema) {
-      const response = await this.client.get('/meta');
-      this.schema = response.data;
+      try {
+        // Using /api/1.1/meta directly instead of just /meta
+        const response = await this.client.get('/api/1.1/meta');
+        this.schema = response.data;
+      } catch (error: any) {
+        console.error('Schema fetch error:', error.response?.data || error.message);
+        throw error;
+      }
     }
     return this.schema!;
   }
 
-  // Generic CRUD operations
+  // Modify list method to use the correct API version path
   async list(dataType: string, params?: { limit?: number; cursor?: number }) {
     try {
       const queryParams = new URLSearchParams();
       if (params?.limit) queryParams.append('limit', params.limit.toString());
       if (params?.cursor) queryParams.append('cursor', params.cursor.toString());
       
-      const response = await this.client.get(`/obj/${dataType}?${queryParams}`);
+      // Using /api/1.1/obj/ path
+      const response = await this.client.get(`/api/1.1/obj/${dataType}?${queryParams}`);
       return response.data;
-    } catch (error) {
-      console.error(`Error listing ${dataType}:`, error);
-      throw error;
+    } catch (error: any) {
+      const errorMsg = error.response?.data?.message || error.message;
+      console.error(`Error listing ${dataType}:`, errorMsg);
+      throw new Error(`Failed to list ${dataType}: ${errorMsg}`);
     }
   }
 
